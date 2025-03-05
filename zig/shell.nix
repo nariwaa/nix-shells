@@ -7,7 +7,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo -e "\033[31mCreating .telescopeignore and .gitignore if not done already...\033[0m"
+    echo -e "\033[34mCreating .telescopeignore and .gitignore if not done already...\034[0m"
 
     # Function to check if a line exists in a file
     lineinfile() {
@@ -20,22 +20,21 @@ pkgs.mkShell {
         
         if ! grep -q -F "$line" "$file"; then
             echo "$line" >> "$file"
-            echo -e "\033[31m    Added '$line' to $file\033[0m"
+            echo -e "\033[35m    Added '$line' to $file\033[0m"
         else
-            echo -e "\033[31m    '$line' already exists in $file, doing nothing."
+            echo -e "\033[33m    '$line' already exists in $file, doing nothing."
         fi
     }
 
     # telescope
-    lineinfile ".telescopeignore" "./.pythonlib/"
+    lineinfile ".telescopeignore" ".git/"
 
     # gitignore
-    lineinfile ".gitignore" ""
-    lineinfile ".gitignore" "ig-cache/
-    lineinfile ".gitignore" "ig-out/
-    lineinfile ".gitignore" "uild/
-    lineinfile ".gitignore" "uild-*/
-    lineinfile ".gitignore" "ocgen_tmp/
-    echo -e "\033[33m\nDone!\033[0m"
+    lineinfile ".gitignore" "ig-cache/"
+    lineinfile ".gitignore" "ig-out/"
+    lineinfile ".gitignore" "uild/"
+    lineinfile ".gitignore" "uild-*/"
+    lineinfile ".gitignore" "ocgen_tmp/"
+    echo -e "\033[34m\nDone!\033[0m"
   '';
 }
