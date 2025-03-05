@@ -2,7 +2,7 @@
 
 pkgs.mkShell {
   buildInputs = [
-    zig
+    pkgs.zig
   ];
 
   shellHook = ''
